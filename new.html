@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I’m Sorry 💔</title>
+  <link rel="stylesheet" href="new.css"/>
+  <style>
+    /* Existing body and message styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    .animation-box {
+      width: 90%;
+      max-width: 1000px;
+      height: auto;
+      min-height: 100vh;
+      background-color: black;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      display: none; /* Hide the message section initially */
+    }
+
+    .message-text {
+      width: 100%;
+      font-size: 1.8rem;
+      color: #f1f1f1;
+      line-height: 2.8rem;
+      opacity: 0;
+      animation: fadeInLine 4s ease forwards;
+      margin-bottom: 1.5rem;
+    }
+
+    .message-text span.highlight {
+      color: #ff6fa5;
+      font-weight: bold;
+    }
+
+    .msg1 { animation-delay: 0s; }
+    .msg2 { animation-delay: 4s; }
+    .msg3 { animation-delay: 8s; }
+    .msg4 { animation-delay: 12s; }
+    .msg5 { animation-delay: 16s; }
+    .msg6 { animation-delay: 20s; }
+
+    @keyframes fadeInLine {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .message-text {
+        font-size: 1.2rem;
+        line-height: 2rem;
+      }
+    }
+
+    /* New Play Music Button Styling */
+    .play-music-btn {
+      position: fixed;
+      bottom: 20px;  /* Placed at the bottom of the page */
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      font-size: 20px;
+      background-color: #ff4b5c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      animation: shake 0.5s infinite alternate; /* Shaking animation */
+    }
+
+    .play-music-btn:hover {
+      background-color: #e43e4d;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      25% {
+        transform: translateX(-50%) rotate(5deg);
+      }
+      50% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      75% {
+        transform: translateX(-50%) rotate(-5deg);
+      }
+      100% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Hearts -->
+  <div class="hearts">
+    <span style="left: 5%; animation-delay: 0s;"></span>
+    <span style="left: 20%; animation-delay: 2s;"></span>
+    <span style="left: 40%; animation-delay: 4s;"></span>
+    <span style="left: 60%; animation-delay: 1s;"></span>
+    <span style="left: 80%; animation-delay: 3s;"></span>
+  </div>
+
+  <!-- Local Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="./hbd.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play Music Button -->
+  <button class="play-music-btn" id="playMusicBtn">Play Music</button>
+
+  <!-- Apology Message -->
+  <section class="animation-box" id="messageSection">
+    <div class="message-text msg1">
+      My Love, I’m truly <span class="highlight">sorry</span> for everything I’ve done to hurt you.
+    </div>
+    <div class="message-text msg2">
+      You mean so much to me — more than words can ever say.
+    </div>
+    <div class="message-text msg3">
+      I never wanted to cause you pain. If I could take it back, I would a thousand times over.
+    </div>
+    <div class="message-text msg4">
+      Please believe me when I say I’m <span class="highlight">learning</span>, I’m <span class="highlight">growing</span>, and I’m trying — for you, for us.
+    </div>
+    <div class="message-text msg5">
+      You are the most <span class="highlight">beautiful</span> part of my world, and I don’t want to lose you.
+    </div>
+    <div class="message-text msg6">
+      I love you. I always have, and I always will. <span class="highlight">Please forgive me</span>. 💔
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('playMusicBtn').addEventListener('click', () => {
+      // Play the music
+      const music = document.getElementById("bgMusic");
+      music.play();
+
+      // Hide the play button after clicking
+      document.getElementById('playMusicBtn').style.display = 'none';
+
+      // Show the message section
+      const messageSection = document.getElementById('messageSection');
+      messageSection.style.display = 'block';
+
+      // Show the apology message with a delay
+      const messageTexts = document.querySelectorAll('.message-text');
+      messageTexts.forEach((msg, index) => {
+        setTimeout(() => {
+          msg.classList.add('show-message');
+        }, index * 3000);  // Delay between each message
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Click Me 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe6f0, #ffccdd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .wrapper {
+      text-align: center;
+    }
+
+    .cute-btn {
+      background-color: #ff5e91;
+      color: white;
+      font-size: 24px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(255, 94, 145, 0.4);
+      animation: bounce 2s infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .cute-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cute-btn {
+        font-size: 20px;
+        padding: 12px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <button class="cute-btn" onclick="goToMessage()">Click Me 💌</button>
+</div>
+
+<script>
+  function goToMessage() {
+    window.location.href = 'new.html';
+  }
+</script>
+
+</body>
+</html>
