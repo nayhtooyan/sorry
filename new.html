@@ -6,7 +6,7 @@
   <title>I’m Sorry 💔</title>
   <link rel="stylesheet" href="new.css"/>
   <style>
-    /* Existing body and message styles */
+    /* Body and message box styling */
     body {
       font-family: Arial, sans-serif;
       background: black;
@@ -25,7 +25,7 @@
       position: relative;
       padding: 2rem 1rem;
       box-sizing: border-box;
-      display: none; /* Hide the message section initially */
+      display: none; /* Initially hidden */
     }
 
     .message-text {
@@ -71,10 +71,10 @@
       }
     }
 
-    /* New Play Music Button Styling */
+    /* Play Music Button Styling */
     .play-music-btn {
       position: fixed;
-      bottom: 20px;  /* Placed at the bottom of the page */
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       padding: 15px 25px;
@@ -86,7 +86,7 @@
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       z-index: 10;
-      animation: shake 0.5s infinite alternate; /* Shaking animation */
+      animation: shake 0.5s infinite alternate;
     }
 
     .play-music-btn:hover {
@@ -110,6 +110,99 @@
         transform: translateX(-50%) rotate(0deg);
       }
     }
+
+    /* Continue Button Styling */
+    .continue-btn {
+      display: none; /* Initially hidden */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff6fa5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      animation: shakeButton 1s ease infinite;
+    }
+
+    .continue-btn:hover {
+      background-color: #e43e4d;
+    }
+
+    @keyframes shakeButton {
+      0% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      25% {
+        transform: translateX(-50%) rotate(5deg);
+      }
+      50% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      75% {
+        transform: translateX(-50%) rotate(-5deg);
+      }
+      100% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+    }
+
+    /* Image Container Styling */
+    .image-container {
+      display: none; /* Initially hidden */
+      text-align: center;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInImage 2s forwards;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+      opacity: 0;
+      animation: fadeInImage 1s forwards;
+    }
+
+    @keyframes fadeInImage {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Special "Will You Forgive Me?" message */
+    .forgive-message {
+      display: none;
+      font-size: 2rem;
+      color: #ff6fa5;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+      animation: fadeInForgive 3s forwards;
+    }
+
+    @keyframes fadeInForgive {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -153,6 +246,24 @@
     </div>
   </section>
 
+  <!-- "Will You Forgive Me?" Message -->
+  <div class="forgive-message" id="forgiveMessage">
+    Will you forgive me? 💔
+  </div>
+
+  <!-- Images Section -->
+  <div class="image-container" id="imageContainer">
+    <!-- Add multiple images -->
+    <img src="./img11.jpg" alt="Image 1" />
+    <img src="./img12.jpg" alt="Image 2" />
+    <img src="./img13.jpg" alt="Image 3" />
+    <img src="./img14.jpg" alt="Image 4" />
+    <img src="./img15.jpg" alt="Image 5" />
+  </div>
+
+  <!-- Continue Button -->
+  <button class="continue-btn" id="continueBtn">Continue</button>
+
   <script>
     document.getElementById('playMusicBtn').addEventListener('click', () => {
       // Play the music
@@ -169,10 +280,28 @@
       // Show the apology message with a delay
       const messageTexts = document.querySelectorAll('.message-text');
       messageTexts.forEach((msg, index) => {
-        setTimeout(() => {
-          msg.classList.add('show-message');
-        }, index * 3000);  // Delay between each message
+        msg.style.animationDelay = `${index * 4}s`;
       });
+    });
+
+    // After all messages, show the "Will You Forgive Me?" message
+    setTimeout(() => {
+      document.getElementById('forgiveMessage').style.display = 'block';
+    }, 24 * 1000); // 24 seconds after the page load
+
+    // Show Continue Button after the forgive message
+    setTimeout(() => {
+      document.getElementById('continueBtn').style.display = 'inline-block';
+    }, 26 * 1000); // After 2 seconds of showing the forgive message
+
+    // Show images and disable messages when Continue button is clicked
+    document.getElementById('continueBtn').addEventListener('click', () => {
+      // Hide message and continue button
+      document.getElementById('messageSection').style.display = 'none';
+      document.getElementById('continueBtn').style.display = 'none';
+
+      // Show images with animation
+      document.getElementById('imageContainer').style.display = 'block';
     });
   </script>
 </body>
